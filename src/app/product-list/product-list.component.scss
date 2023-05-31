@@ -1,0 +1,25 @@
+.mdc-data-table__row:not(.mdc-data-table__row--selected):hover {
+  background-color: #bfdbfe;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  position: relative;
+  .mdc-data-table__cell,
+  .mdc-data-table__header-cell {
+    border-color: transparent;
+  }
+}
+
+.row-is-clicked {
+  background-color: #ddd6fe !important;
+}
+table {
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.vh90 {
+  height: calc(100vh - 130px);
+}
