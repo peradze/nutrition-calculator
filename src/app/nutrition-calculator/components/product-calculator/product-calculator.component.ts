@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Product } from '../model/product';
+import { Product } from '../../model/product';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

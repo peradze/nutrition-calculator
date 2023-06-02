@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Product } from '../model/product';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-total-nutrition',
