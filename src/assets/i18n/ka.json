@@ -9,5 +9,6 @@
   "FAT": "ცხიმი",
   "ADD": "დამატება",
   "GRAM": "გრამი",
-  "TOTAL_NUTRITION": "ნუტრიენტების ჯამი"
+  "TOTAL_NUTRITION": "ნუტრიენტების ჯამი",
+  "DATA_COLLECTED_FROM": "მონაცემები აღებულია fit.ge-დან"
 }

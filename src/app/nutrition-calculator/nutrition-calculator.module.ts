@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
     ProductCalculatorComponent,
     SelectedProductsComponent,
     TotalNutritionComponent,
+    ToolbarComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +41,7 @@ import { MatSortModule } from '@angular/material/sort';
     TranslateModule.forChild(),
     MatTableModule,
     MatSortModule,
+    MatTooltipModule,
   ],
 })
 export class NutritionCalculatorModule {}

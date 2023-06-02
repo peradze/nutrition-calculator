@@ -1,18 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
 import { PRODUCTS } from '../utils/data';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private selectedProductSubj$: BehaviorSubject<Product | null> = new BehaviorSubject<Product | null>(null);
-  private selectedProduct$ = this.selectedProductSubj$.asObservable();
-  private calculatedProductsSubj$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-  private calculatedProduct$ = this.calculatedProductsSubj$.asObservable();
+  private selectedProductSubj$: BehaviorSubject<Product | null>;
+  private readonly selectedProduct$: Observable<Product | null>;
 
-  constructor() {}
+  private calculatedProductsSubj$: BehaviorSubject<Product[]>;
+  private readonly calculatedProduct$: Observable<Product[]>;
+
+  constructor() {
+    let selectedProductCache = localStorage.getItem('selectedProduct');
+    if (selectedProductCache) {
+      this.selectedProductSubj$ = new BehaviorSubject<Product | null>(JSON.parse(selectedProductCache));
+    } else {
+      this.selectedProductSubj$ = new BehaviorSubject<Product | null>(null);
+    }
+    this.selectedProduct$ = this.selectedProductSubj$.asObservable();
+
+    let calculatedProductsCache = localStorage.getItem('calculatedProducts');
+    if (calculatedProductsCache) {
+      this.calculatedProductsSubj$ = new BehaviorSubject<Product[]>(JSON.parse(calculatedProductsCache));
+    } else {
+      this.calculatedProductsSubj$ = new BehaviorSubject<Product[]>([]);
+    }
+    this.calculatedProduct$ = this.calculatedProductsSubj$.asObservable().pipe(distinctUntilChanged());
+  }
 
   getSelectedProduct() {
     return this.selectedProduct$;
@@ -20,6 +37,7 @@ export class ProductService {
 
   setSelectedProduct(product: Product) {
     this.selectedProductSubj$.next(product);
+    localStorage.setItem('selectedProduct', JSON.stringify(product));
   }
 
   getCalculatedProducts() {
@@ -27,11 +45,15 @@ export class ProductService {
   }
 
   addCalculatedProduct(product: Product) {
-    this.calculatedProductsSubj$.next([...this.calculatedProductsSubj$.value, product]);
+    let nextValue = [...this.calculatedProductsSubj$.value, product];
+    this.calculatedProductsSubj$.next(nextValue);
+    localStorage.setItem('calculatedProducts', JSON.stringify(nextValue));
   }
 
   removeFromCalculatedProducts(product: Product) {
-    this.calculatedProductsSubj$.next(this.calculatedProductsSubj$.getValue().filter((p) => p !== product));
+    let afterRemoved = this.calculatedProductsSubj$.getValue().filter((p) => p !== product);
+    this.calculatedProductsSubj$.next(afterRemoved);
+    localStorage.setItem('calculatedProducts', JSON.stringify(afterRemoved));
   }
 
   getAll(): Product[] {

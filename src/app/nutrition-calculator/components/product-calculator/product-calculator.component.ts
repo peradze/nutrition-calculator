@@ -12,7 +12,7 @@ export class ProductCalculatorComponent implements OnInit, OnChanges {
   @Input() product: Product | null = null;
   @Output() calculatedProduct = new EventEmitter<Product>();
   productForm = new FormGroup({
-    gram: new FormControl({ value: null, disabled: true }, Validators.required),
+    gram: new FormControl({ value: null, disabled: true }, [Validators.required, Validators.min(Number.MIN_VALUE)]),
     calorie: new FormControl({ value: 0, disabled: true }),
     protein: new FormControl({ value: 0, disabled: true }),
     carbs: new FormControl({ value: 0, disabled: true }),
