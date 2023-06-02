@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { PRODUCTS } from './utils/data';
 import { Product } from './model/product';
 import { TranslateService } from '@ngx-translate/core';
+import { ProductService } from './services/product.service';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -9,41 +10,32 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  products = PRODUCTS;
-  selectedProduct: Product | null = null;
-  selectedProducts: Product[] = [];
-  languages: string[] = ['EN', 'KA'];
-  selectedLang = 'KA';
+  products = this.productService.getAll();
+  selectedProduct$ = this.productService.getSelectedProduct();
+  calculatedProducts$ = this.productService.getCalculatedProducts();
 
-  constructor(private translateService: TranslateService) {
-    let lang = sessionStorage.getItem('appLang');
-    if (lang != null) {
-      this.selectedLang = lang;
-      this.updateLang();
-    }
-  }
+  languages: string[] = this.languageService.getLanguageOptions();
+
+  constructor(
+    private translateService: TranslateService,
+    private productService: ProductService,
+    private languageService: LanguageService,
+  ) {}
 
   onProductSelect($event: Product) {
-    this.selectedProduct = $event;
+    this.productService.setSelectedProduct($event);
   }
 
   onCalculatedProduct($event: Product) {
-    this.selectedProducts = [...this.selectedProducts, $event];
+    this.productService.addCalculatedProduct($event);
   }
 
   onRemoveSelected($event: Product) {
-    this.selectedProducts = this.selectedProducts.filter((product) => product !== $event);
+    this.productService.removeFromCalculatedProducts($event);
   }
 
   changeLanguage(lang: string) {
-    this.selectedLang = lang;
     this.translateService.use(lang.toLowerCase());
-    this.updateLang();
-  }
-
-  updateLang() {
-    sessionStorage.setItem('appLang', this.selectedLang);
-    document.documentElement.lang = this.selectedLang.toLowerCase();
-    this.translateService.use(this.selectedLang.toLowerCase()).subscribe();
+    this.languageService.updateLang(lang);
   }
 }

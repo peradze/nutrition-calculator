@@ -52,7 +52,6 @@ export class ProductCalculatorComponent implements OnInit, OnChanges {
   }
 
   selectProduct() {
-    console.log(this.productForm.invalid);
     this.calculatedProduct.emit({
       ...this.productForm.getRawValue(),
       // @ts-ignore

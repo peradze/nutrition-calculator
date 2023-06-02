@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./selected-products.component.scss'],
 })
 export class SelectedProductsComponent implements OnChanges {
-  @Input() selectedProducts: Product[] = [];
+  @Input() calculatedProducts: Product[] = [];
   @Output() removeSelected = new EventEmitter<Product>();
   displayedColumns: string[] = ['product', 'gram', 'calorie', 'protein', 'carbs', 'fat', 'remove'];
   dataSource: MatTableDataSource<Product> = new MatTableDataSource<Product>();
@@ -17,7 +17,7 @@ export class SelectedProductsComponent implements OnChanges {
   constructor(public translateService: TranslateService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.dataSource = new MatTableDataSource<Product>(this.selectedProducts);
+    this.dataSource = new MatTableDataSource<Product>(this.calculatedProducts);
   }
 
   removeProduct(element: Product) {

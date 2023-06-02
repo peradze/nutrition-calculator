@@ -7,7 +7,7 @@ import { Product } from '../model/product';
   styleUrls: ['./total-nutrition.component.scss'],
 })
 export class TotalNutritionComponent implements OnChanges {
-  @Input() selectedProducts: Product[] = [];
+  @Input() calculatedProducts: Product[] = [];
   totalCalorie = 0;
   totalProtein = 0;
   totalCarbs = 0;
@@ -24,7 +24,7 @@ export class TotalNutritionComponent implements OnChanges {
     this.totalCarbs = 0;
     this.totalFat = 0;
     this.totalGram = 0;
-    this.selectedProducts.forEach((product) => {
+    this.calculatedProducts.forEach((product) => {
       this.totalCalorie += product.calorie ? product.calorie : 0;
       this.totalProtein += product.protein ? product.protein : 0;
       this.totalCarbs += product.carbs ? product.carbs : 0;

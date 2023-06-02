@@ -22,7 +22,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Product>(this.products);
-    console.log(this.translateService.currentLang);
   }
 
   ngAfterViewInit(): void {
