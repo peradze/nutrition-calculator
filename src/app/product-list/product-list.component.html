@@ -1,34 +1,34 @@
 <div class="p-3 bg-white rounded shadow-lg">
-  <h3 class="text-2xl mb-3 text-center text-slate-700">პროდუქტების სია</h3>
+  <h3 class="text-2xl mb-3 text-center text-slate-700">{{ 'PRODUCT_LIST' | translate }}</h3>
   <mat-form-field class="w-full">
-    <mat-label>Search</mat-label>
+    <mat-label>{{ 'SEARCH' | translate }}</mat-label>
     <input #input (keyup)="applyFilter($event)" matInput placeholder="">
   </mat-form-field>
-  <div class="vh90 overflow-auto relative">
+  <div class="vhr overflow-auto relative">
     <table [dataSource]="dataSource"  mat-table matSort>
 
       <ng-container matColumnDef="product">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Product </th>
-        <td *matCellDef="let element" mat-cell> {{element.productGE}} </td>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ 'PRODUCT' | translate }} </th>
+        <td *matCellDef="let element" mat-cell> {{ translateService.currentLang == 'en' ? element.product : element.productGE }} </td>
       </ng-container>
 
       <ng-container matColumnDef="calorie">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Calorie </th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ 'CALORIE' | translate }} </th>
         <td *matCellDef="let element" mat-cell> {{element.calorie}} </td>
       </ng-container>
 
       <ng-container matColumnDef="protein">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Protein </th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ 'PROTEIN' | translate }} </th>
         <td *matCellDef="let element" mat-cell> {{element.protein}} </td>
       </ng-container>
 
       <ng-container matColumnDef="carbs">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Carbs </th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ 'CARBS' | translate }} </th>
         <td *matCellDef="let element" mat-cell> {{element.carbs}} </td>
       </ng-container>
 
       <ng-container matColumnDef="fat">
-        <th *matHeaderCellDef mat-header-cell mat-sort-header> Fat </th>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ 'FAT' | translate }} </th>
         <td *matCellDef="let element" mat-cell> {{element.fat}} </td>
       </ng-container>
 

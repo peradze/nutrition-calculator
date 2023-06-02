@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../model/product';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-calculator',
@@ -17,6 +18,8 @@ export class ProductCalculatorComponent implements OnInit, OnChanges {
     carbs: new FormControl({ value: 0, disabled: true }),
     fat: new FormControl({ value: 0, disabled: true }),
   });
+
+  constructor(public translateService: TranslateService) {}
 
   ngOnInit(): void {
     this.productForm.get('gram')?.valueChanges.subscribe((value) => {

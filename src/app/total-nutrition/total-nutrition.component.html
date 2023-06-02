@@ -1,34 +1,34 @@
 <div class="p-3 bg-white rounded shadow-lg mt-2">
-  <h3 class="text-2xl mb-3 text-center text-slate-700">ნუტრიენტების ჯამი</h3>
+  <h3 class="text-2xl mb-3 text-center text-slate-700">{{ 'TOTAL_NUTRITION' | translate }}</h3>
   <div class="grid grid-cols-1 gap-2.5 md:grid-cols-4 mt-5 mb-2">
     <div
-      class="border-2 border-cyan-600 rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
+      class="border-2 bp-color rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
       <div>
         <h3 class="text-2xl font-bold">{{ totalCalorie | number:'.2' }}</h3>
-        <p>კალორია</p>
+        <p>{{ 'CALORIE' | translate }}</p>
       </div>
     </div>
     <div
-      class="border-2 border-cyan-600 rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
+      class="border-2 bp-color rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
       <div>
         <h3 class="text-2xl font-bold">{{ totalProtein | number:'.2' }}</h3>
-        <p>ცილა</p>
+        <p>{{ 'PROTEIN' | translate }}</p>
       </div>
     </div>
     <div
-      class="border-2 border-cyan-600 rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
+      class="border-2 bp-color rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
       <div>
         <h3 class="text-2xl font-bold">{{ totalCarbs | number:'.2' }}</h3>
-        <p>ნახშირწყალი</p>
+        <p>{{ 'CARBS' | translate }} </p>
       </div>
     </div>
     <div
-      class="border-2 border-cyan-600 rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
+      class="border-2 bp-color rounded-full text-center w-32 h-32 align-middle flex items-center justify-center justify-self-center">
       <div>
         <h3 class="text-2xl font-bold">{{ totalFat | number:'.2' }}</h3>
-        <p>ცხიმი</p>
+        <p> {{ 'FAT' | translate }}</p>
       </div>
     </div>
   </div>
-  <div><h3>{{ totalGram | number:'.2' }} გრამი</h3></div>
+  <div class="text-center"><h3>{{ totalGram | number:'.2' }}  {{ 'GRAM' | translate }}</h3></div>
 </div>

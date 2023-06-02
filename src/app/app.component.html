@@ -1,8 +1,22 @@
-<div class="p-1 lg:p-4">
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-1 relative">
+<mat-toolbar color="primary">
+  <div class="flex justify-between align-middle w-full">
+    <div>
+      <img alt="logo" height="32" ngSrc="./assets/images/logo-white.svg" width="32">
+    </div>
+
+    <div>
+      <button [matMenuTriggerFor]="menu" mat-button><mat-icon>translate</mat-icon></button>
+      <mat-menu #menu="matMenu" class="mw-auto">
+        <button (click)="changeLanguage(lang)" *ngFor="let lang of languages" mat-menu-item>{{lang}}</button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
+<div class="p-1 lg:p-2">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 relative">
     <app-product-list (productSelect)="onProductSelect($event)" [products]="products"></app-product-list>
 
-    <div class="vh90 overflow-auto">
+    <div class="vh2 overflow-auto">
       <app-product-calculator
         (calculatedProduct)="onCalculatedProduct($event)"
         [product]="selectedProduct"></app-product-calculator>

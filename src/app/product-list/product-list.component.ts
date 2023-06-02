@@ -2,6 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChil
 import { Product } from '../model/product';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-list',
@@ -17,8 +18,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   selectedProduct: Product | undefined;
 
+  constructor(public translateService: TranslateService) {}
+
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Product>(this.products);
+    console.log(this.translateService.currentLang);
   }
 
   ngAfterViewInit(): void {

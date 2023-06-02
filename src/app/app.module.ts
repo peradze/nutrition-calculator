@@ -14,9 +14,26 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SelectedProductsComponent } from './selected-products/selected-products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TotalNutritionComponent } from './total-nutrition/total-nutrition.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { NgOptimizedImage } from '@angular/common';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
-  declarations: [AppComponent, ProductListComponent, ProductCalculatorComponent, SelectedProductsComponent, TotalNutritionComponent],
+  declarations: [
+    AppComponent,
+    ProductListComponent,
+    ProductCalculatorComponent,
+    SelectedProductsComponent,
+    TotalNutritionComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +44,19 @@ import { TotalNutritionComponent } from './total-nutrition/total-nutrition.compo
     MatButtonModule,
     ReactiveFormsModule,
     MatIconModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'ka',
+    }),
+    MatToolbarModule,
+    MatSelectModule,
+    MatMenuModule,
+    NgOptimizedImage,
   ],
   providers: [],
   bootstrap: [AppComponent],
